@@ -125,8 +125,8 @@
       </div>
       <div class="frame card fx" style="--i:6">
         <h3><span class="tag" style="color:var(--amber)">LINT</span>정보융합 자동화 — 모순은 스스로 찾는다</h3>
-        <p>상황 모순·스테일 정보 상시 점검: 동일 적 부대의 상반된 위치 보고, 낡은 상황판 항목을
-        <b style="color:var(--amber)">⚠ 자동 플래그</b>. 정보장교의 intel fusion을 오프라인에서 자동화 — 어떤 선행 프로젝트에도 없다.</p>
+        <p>엔티티 추출(부대·위치·시각)로 보고를 교차검증: 동일 적 부대의 상반된 위치 보고, 낡은 상황판 항목에
+        <b style="color:var(--amber)">⚠ 재확인 요구</b>. 정보장교의 첩보 교차검증(intel fusion)을 오프라인에서 자동화 — 어떤 선행 프로젝트에도 없다.</p>
       </div>
     </div>
   </div>
@@ -177,6 +177,7 @@
   <div class="wrap">
     <div class="kicker fx" style="--i:0"><span class="idx">06</span> ARCHITECTURE · 3층 볼트</div>
     <h2 class="fx" style="--i:1">기록은 <span class="hl-a">불변</span>, 지식은 <span class="hl">진화</span> — 전 구간 루프백</h2>
+    <p class="lede fx" style="--i:1">세 개의 오퍼레이션은 지휘소 참모 기능의 자동화다 — 상황병 · 작전참모 · 정보장교가 노트북 한 대에 들어간다.</p>
     <div class="arch">
       <div class="frame tree fx" style="--i:2">fieldbrain-vault/
 ├─ <b>raw/</b>              <span class="ta">불변 · LLM 읽기전용</span>
@@ -191,16 +192,16 @@
 └─ SCHEMA.md          보고 양식 · 갱신 · lint 규칙</div>
       <div class="ops">
         <div class="frame op fx" style="--i:3">
-          <h3>INGEST <span class="ko">— 자동 구조화</span></h3>
-          <p>watchdog 2s 디바운스 → 신규 보고 1건이 관련 위키 페이지들을 갱신·크로스링크. 저장→질의 가능 <b>~4초</b>.</p>
+          <h3>INGEST <span class="ko">— 상황병</span></h3>
+          <p>보고 접수 → <b>상황판 전기(轉記)를 자동화</b>. 파일 감시(watchdog 2s 디바운스) + 임베딩 + 증분 색인 — 저장→질의 가능 <b>~4초</b>, 위키 페이지 갱신·크로스링크까지.</p>
         </div>
         <div class="frame op fx" style="--i:4">
-          <h3>QUERY <span class="ko">— 인용 강제 질의</span></h3>
-          <p>KURE-v1 임베딩 + LanceDB(<b>RBAC 프리필터</b>·반감기 리랭크) + 한국어 sLLM(Ollama·Mi:dm 2.0) → 인용 검증기. 근거 없으면 LLM 호출 없이 거부.</p>
+          <h3>QUERY <span class="ko">— 작전참모</span></h3>
+          <p><b>근거 조항을 달아 보고한다.</b> 의미 검색(KURE-v1 + LanceDB) + <b>RBAC 프리필터</b> + 인용 강제·검증(한국어 sLLM · Mi:dm 2.0) — 근거 없으면 답변 거부.</p>
         </div>
         <div class="frame op lint fx" style="--i:5">
-          <h3>LINT <span class="ko">— 정보융합 점검</span></h3>
-          <p>모순 위치 보고 · 스테일 상황판 · 고아 페이지 자동 플래그 → 지휘소가 <b>믿어도 되는 지식만</b> 남긴다.</p>
+          <h3>LINT <span class="ko">— 정보장교</span></h3>
+          <p><b>첩보 교차검증.</b> 엔티티 추출(부대·위치·시각) + 모순·스테일 탐지 → <b>⚠ 재확인 요구</b> — 지휘소가 믿어도 되는 지식만 남긴다.</p>
         </div>
       </div>
     </div>
