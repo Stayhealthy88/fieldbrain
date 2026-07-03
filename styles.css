@@ -213,6 +213,17 @@ ul.list li::before { content: "▸"; position: absolute; left: 4px; color: var(-
 ul.list li b { color: var(--text); }
 ul.list li .m { font-family: var(--mono); font-size: 0.88em; color: var(--amber); }
 
+/* use-case vignettes */
+.uc { padding: 16px 18px; }
+.uc .uc-head { display: flex; gap: 10px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; margin-bottom: 8px; }
+.uc .uc-head .tm { color: var(--amber); }
+.uc .uc-head .role { color: var(--green); border: 1px solid var(--line-strong); padding: 0 7px; border-radius: 3px; }
+.uc .uq { color: var(--dim); font-size: 0.89em; margin-bottom: 7px; }
+.uc .ua { font-size: 0.89em; color: var(--text); line-height: 1.65; }
+.uc .ua b { color: var(--green); }
+.uc .ua .warn { color: var(--red); }
+.uc .ua .meta-note { color: var(--faint); font-size: 0.88em; }
+
 /* quote */
 .quote { margin-top: 34px; padding: 22px 26px; font-size: 1.12em; line-height: 1.65; color: var(--text); }
 .quote b { color: var(--green); }

@@ -37,6 +37,8 @@ fieldbrain-vault/
 
 스택: Ollama + 한국어 sLLM(Mi:dm 2.0 / A.X 4.0 Light) + KURE-v1 임베딩 + LanceDB · MacBook Air M2 16GB 단독 구동.
 
+**운용 개념**: 대대급 지휘소 C4I(ATCIS·B2CS) 곁의 참모 어시스턴트 — 대체가 아니라 보완. 배포는 하드웨어 암호화 SSD 1개(모델+런타임+볼트+오프라인 지도, ~30GB)로 통째 — 지휘소 노트북에 꽂으면 구동(plug-and-brain), CP 이동·인수인계 = SSD 인계.
+
 ## 문서
 
 - [docs/prior-art.md](docs/prior-art.md) — 선행 사례 분석 (로컬 볼트 RAG 생태계 · 국방 AI 랜드스케이프 · 실시간 인덱싱 패턴 · 오프라인 지도 스트레치 골)

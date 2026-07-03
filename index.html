@@ -222,7 +222,7 @@
         </div>
       </div>
     </div>
-    <p class="pipe-foot fx" style="--i:6">HW: <b>MacBook Air M2 16GB</b> 단독 · LLM Q4 ~7GB + KURE-v1 ~1.2GB + KV ≈ 9.5GB ✓ · 외부 연결 0건(nettop 실증)</p>
+    <p class="pipe-foot fx" style="--i:6">HW: <b>MacBook Air M2 16GB</b> 단독 · LLM Q4 ~7GB + KURE-v1 ~1.2GB + KV ≈ 9.5GB ✓ · 외부 연결 0건(nettop 실증) · 배포: <b>암호화 SSD 1개</b>(모델+런타임+볼트 통째)</p>
     <div class="grid g3">
       <div class="frame card fx" style="--i:7"><h3>프리빌드 (기존 역량)</h3><p>오프라인 RAG 엔진 — Ollama + 임베딩 + 검색 파이프라인. 규정대로 명확히 구분해 발표.</p></div>
       <div class="frame card fx" style="--i:8"><h3>24H 신규 빌드</h3><p>3층 볼트 + ingest 워처 · 위키 갱신 · lint 점검 · 이중 인용 · RBAC · 국방 코퍼스 · 전술 질의 UX.</p></div>
@@ -295,31 +295,39 @@
   </div>
 </section>
 
-<!-- 11 · STRETCH: MAP -->
+<!-- 11 · USE CASES -->
 <section class="slide" id="s9">
   <div class="wrap">
-    <div class="kicker fx" style="--i:0"><span class="idx">11</span> STRETCH GOAL · 조건부</div>
-    <h2 class="fx" style="--i:1">오프라인 지도: <span class="hl-a">보고가 지도를 다시 그린다</span></h2>
-    <p class="lede fx" style="--i:2">새 중간보고 저장 → 위협 폴리곤 자동 생성 → 오프라인 경로가 눈앞에서 재계획.
-    지도의 유일한 신규성은 이 <b>보고→폴리곤→재경로 자동화 루프</b>다 (오프라인 지도·회피 라우팅 자체는 ATAK+OTN이 선행).</p>
-    <div class="gate frame fx" style="--i:3">
-      <div class="gh">GO / NO-GO GATE</div>
-      <p>코어 루프(ingest→위키→인용 답변)가 <b>12~14시간 시점까지 E2E 2회 완주</b>했을 때만 착수.
-      이후 <b>4시간 타임박스</b> — "경로가 폴리곤을 피해 재계획되면" 성공, 못 하면 슬라이드 스크린샷으로 강등. 어중간한 라이브 지도는 없는 것보다 나쁘다.</p>
-    </div>
+    <div class="kicker fx" style="--i:0"><span class="idx">11</span> USE CASES · 지휘소의 24시간</div>
+    <h2 class="fx" style="--i:1">C4I 곁의 <span class="hl">참모 어시스턴트</span> — 이렇게 쓴다</h2>
+    <p class="lede fx" style="--i:2">ATCIS·B2CS를 대체하지 않는다 — 그 곁에서 기억하고, 근거를 달아 조언하고, 재확인을 요구한다.
+    (아래 시나리오는 전부 합성 데이터)</p>
     <div class="grid g2">
-      <div class="frame card fx" style="--i:4">
-        <h3>스택 — 순수 파이썬, 사전 준비 필수</h3>
-        <p>Geofabrik 한국 PBF(261MB) 사전 다운로드 → 도시 bbox 클립 → <b>pyrosm</b>(OSMnx는 온라인 API — 함정) → networkx 가중 A*,
-        위협 엣지 <b>×1000 페널티(삭제 금지</b> — 경로 항상 존재) → MapLibre + PMTiles(타일서버 불요) + 글리프 로컬 번들(한글 라벨 보존)
-        + <b>milsymbol APP-6 군대부호</b> + MGRS 좌표.</p>
+      <div class="frame uc fx" style="--i:3">
+        <div class="uc-head"><span class="tm">06:32</span><span class="role">상황일지 전기 — 훈련·실상황</span></div>
+        <p class="uq">상황병 일지 입력: "2중대 OP, 미상 소형드론 1대 북동→남서 통과, 고도 약 150m, 채증 실패"</p>
+        <p class="ua">✓ 4초 뒤 질의 가능. 상황판(situation.md) 갱신, [[적-드론]] 엔티티에 <b>3번째 관측 누적</b> — 일지가 죽은 기록이 아니라 검색 가능한 자산이 된다.</p>
       </div>
-      <div class="frame card fx" style="--i:5">
-        <h3>장교 심사 앞 정직한 프레이밍</h3>
-        <p>"도로망 기준, 보고된 통제·위협 구간을 회피한 <b>후보 경로</b>" — '전술 최적 기동로' 표현 금지.
-        METT-TC·야지 기동·지형 미반영을 먼저 고지 → 약점이 도메인 정직성 증명으로 바뀐다.
-        프로덕션 경로는 ATAK 플러그인/CoT 피드.</p>
+      <div class="frame uc fx" style="--i:4">
+        <div class="uc-head"><span class="tm">06:40</span><span class="role">교리 연계 참모조언</span></div>
+        <p class="uq">지휘관: "드론이 사흘째 같은 시간대에 보인다. 교리상 대응 기준과 권고는?"</p>
+        <p class="ua">"관측 3건 모두 06:30±10분·동일 축선 <span class="chip a">일지 #41·47·52</span> — 반복 정찰 징후 시 경계 강화·상급 보고 기준 충족 <span class="chip">야교 3-1 §2.3</span>. 조언: 해당 시간대 OP 증강 + 진지 위장 점검."</p>
       </div>
+      <div class="frame uc fx" style="--i:5">
+        <div class="uc-head"><span class="tm">09:15</span><span class="role">좌표 × 기상 변수 판단</span></div>
+        <p class="uq">작전참모: "NK1234 5678 축선으로 우회 기동 — 현재 강우 15mm/h인데 도하 가능한가?"</p>
+        <p class="ua">"해당 좌표는 OO천 하류 [오프라인 지도]. 강우 6시간 지속 시 도섭 기준 수위 초과 예상 <span class="chip">도하작전 교범 §4.1</span>. 대안 축선: △△교 경유 +2.4km. <span class="meta-note">⚠ 기상은 최종 수신 08:00 기준</span>"</p>
+      </div>
+      <div class="frame uc fx" style="--i:6">
+        <div class="uc-head"><span class="tm">21:40</span><span class="role">상급 보고 초안</span></div>
+        <p class="uq">통신 일시 복구 — 작전과장: "지난 6시간 상황, 연대 보고용으로 정리해줘."</p>
+        <p class="ua">보고 14건 → 양식에 맞춘 요약 초안 + <span class="warn">⚠ 미해결 재확인 요구 1건 별도 표기</span>, 전 항목 원본 출처 링크 — <b>참모는 쓰지 않고 검토만 한다.</b> 링크가 살아있는 짧은 순간에 송신까지.</p>
+      </div>
+    </div>
+    <div class="grid g3">
+      <div class="frame card fx" style="--i:7"><h3><span class="tag">SSD</span>구성 — plug-and-brain</h3><p>모델(GGUF) + 런타임(포터블 Ollama·단일 실행파일) + 볼트 + 오프라인 지도 = <b>SSD 1개(~30GB)</b>. 설치 0 — 지휘소 노트북에 꽂으면 구동.</p></div>
+      <div class="frame card fx" style="--i:8"><h3><span class="tag">SSD</span>보안</h3><p>하드웨어 암호화(지문·키패드) SSD — 볼트가 금고 보관 가능한 물리 통제 자산이 된다. C4I망과 물리 분리, 에어갭 유지.</p></div>
+      <div class="frame card fx" style="--i:9"><h3><span class="tag">SSD</span>운용</h3><p>CP 전환·이동 = SSD만 뽑아간다. 부대 인수인계 = SSD 인계. 파일 기반이라 N개 복제 = 피격 대비 생존성.</p></div>
     </div>
   </div>
 </section>
@@ -327,34 +335,34 @@
 <!-- 12 · BUILD PLAN -->
 <section class="slide" id="s10">
   <div class="wrap">
-    <div class="kicker fx" style="--i:0"><span class="idx">12</span> BUILD PLAN</div>
-    <h2 class="fx" style="--i:1">사전 준비 2일 + <span class="hl">24시간</span></h2>
+    <div class="kicker fx" style="--i:0"><span class="idx">12</span> BUILD PLAN · 지금부터 24H</div>
+    <h2 class="fx" style="--i:1">24시간, <span class="hl">코어 루프에 몰빵</span></h2>
+    <p class="lede fx" style="--i:1">우선순위는 하나 — ingest→query→lint가 심사위원 눈앞에서 도는 것. 부가 기능은 코어가 E2E 2회 완주한 뒤에만.</p>
     <div class="grid g2">
       <div class="frame card fx" style="--i:2">
-        <h3>사전 (7/2–3 저녁)</h3>
+        <h3>H0–12 — 코어 루프</h3>
         <ul class="list">
-          <li><b>모델 A/B 동결</b> — Mi:dm 2.0 vs A.X 4.0 Light vs Qwen3.5 <span class="m">2~3h 타임박스</span></li>
-          <li><b>모의 로그 생성기 + 합성 시나리오 보고 6~8건</b> — 데모 스토리의 원천</li>
-          <li>공개 교범 코퍼스 + 조항 단위 청킹 검증 · SCHEMA.md(보고 양식·lint 규칙) 초안</li>
-          <li>지도 데이터 프렙(PBF·PMTiles·글리프) — 스트레치 보험</li>
-          <li>콜드스타트 오프라인 리허설 1회</li>
+          <li><span class="m">H0–2</span> 셋업: 모델·임베더 오프라인 캐시 워밍 + 교범 조항 청킹 + SCHEMA.md</li>
+          <li><span class="m">H2–6</span> ingest: 볼트 워처(디바운스·삭제 처리) + 증분 색인 + 위키 갱신</li>
+          <li><span class="m">H6–10</span> query: 이중 인용 + 검증기 + 거부 게이트 + RBAC 프리필터</li>
+          <li><span class="m">H10–12</span> lint: 엔티티 추출(부대·위치·시각) + 모순·스테일 플래그</li>
         </ul>
       </div>
       <div class="frame card fx" style="--i:3">
-        <h3>24H (7/4–5)</h3>
+        <h3>H12–24 — 데모화</h3>
         <ul class="list">
-          <li><span class="m">H0–4</span> 볼트 워처 + ingest(위키 갱신·크로스링크)</li>
-          <li><span class="m">H4–9</span> 이중 인용 query + 검증기 + 거부 게이트</li>
-          <li><span class="m">H9–12</span> lint(모순·스테일 플래그) + RBAC + UX</li>
-          <li><span class="m">H12–14</span> E2E 2회 완주 → <b>지도 GO/NO-GO 판정</b></li>
-          <li><span class="m">H14–20</span> 스트레치 or 폴리싱 · <span class="m">H20–24</span> 리허설×2 + 피칭</li>
+          <li><span class="m">H12–15</span> UX: 단일화면 · 인용 칩 · lint 패널 · 지연시간 표시</li>
+          <li><span class="m">H15–18</span> 시나리오: 합성 상황일지 12건 + 모순 보고 2건 주입·튜닝</li>
+          <li><span class="m">H18–20</span> (코어 E2E 2회 완주 시) 기상·도하 판단 데모 — 교리 기준표 룰 계산</li>
+          <li><span class="m">H20–22</span> 오프라인 하드닝(CDN 0·nettop) + 콜드스타트 리허설 ×2</li>
+          <li><span class="m">H22–24</span> 3분 피칭 리허설 + 제출</li>
         </ul>
       </div>
     </div>
     <div class="grid g3">
       <div class="frame card fx" style="--i:4"><h3>역할 A — 코어 파이프라인</h3><p>워처·ingest·query·인용 검증·lint 룰. 리스크: 한국어 BM25(kiwipiepy or 벡터-only 시작).</p></div>
       <div class="frame card fx" style="--i:5"><h3>역할 B — 데모 & UX</h3><p>단일화면 UI, 인용 칩, lint 플래그 패널, RBAC 토글, 오프라인 하드닝(CDN 0), 데모 스크립트.</p></div>
-      <div class="frame card fx" style="--i:6"><h3>역할 C — 코퍼스 & 시나리오</h3><p>교범 청킹 품질, 모의 로그·모순 시나리오, 평가 질의 20개, (스트레치) 지도.</p></div>
+      <div class="frame card fx" style="--i:6"><h3>역할 C — 코퍼스 & 시나리오</h3><p>교범 청킹 품질, 합성 상황일지·모순 시나리오, 평가 질의 20개, (여유 시) 기상·좌표 판단 기준표.</p></div>
     </div>
   </div>
 </section>
